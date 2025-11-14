@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Special Surprise ❤️</title>
+<style>
+  body {font-family: 'Segoe UI', sans-serif; background: #ffe6f2; color:#333; margin:0; padding:0;}
+  .hidden {display:none;}
+  #secret-form {margin-top:180px;background-color:white;border:1px solid black;border-radius:10px;padding:60px;box-shadow:1px 1px;}
+  #secretcontent {margin-left:200px;}
+  #codeInput {padding:10px;}
+  #letter, #music,#reminders , #photos {background-color:white;}
+  #reminder1, #reminder2, #reminder3, #reminder4 {background-color:#E3CCFF; padding-left:10px; width:50%; border-radius:5px;}
+  .container {max-width: 800px; margin:auto; padding:20px;}
+  h1 {text-align:center; color:#ff3366;}
+  button {padding:10px 20px; font-size:1em; margin-top:10px; cursor:pointer;
+          background:#ff3366; color:white; border:none; border-radius:5px;}
+  .tab-buttons button {margin-right:5px; background:#ff6699; margin-left:60px}
+  .tab-content {border:1px solid #ff3366; padding:20px; border-radius:10px; margin-top:10px;}
+  ul {list-style:none; padding:0;}
+  ul li {margin:5px 0; cursor:pointer;}
+  ul li.completed {text-decoration: line-through; color:gray;}
+  .gallery img {width:150px; margin:5px; border-radius:10px;}
+
+  /* Welcome Message */
+  #welcome-message {
+    text-align:center;
+    font-size:1.8em;
+    color:#ff3366;
+    margin-top:230px;
+    animation: fadeIn 1.5s ease-in-out;
+  }
+
+  @keyframes fadeIn {
+    from {opacity:0;}
+    to {opacity:1;}
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+
+  <!-- Secret Code Form -->
+  <div id="secret-form">
+    <h1>Enter the Secret Code 💌</h1>
+    <div id="secretcontent">
+      <input type="text" id="codeInput" placeholder="Type code here...">
+      <button onclick="checkCode()">Proceed</button>
+      <p id="codeMessage" style="color:red;"></p>
+    </div>
+  </div>
+
+  <!-- Welcome Screen -->
+  <div id="welcome-message" class="hidden">
+    <p>Welcome, love of my life 💖</p>
+  </div>
+
+  <!-- Tabs Section -->
+  <div id="tabs-section" class="hidden">
+    <h1>Happy 1 Year, my BooBoo ❤️</h1>
+
+    <div class="tab-buttons">
+      <button onclick="openTab('letter')">💌 Love Letter</button>
+      <button onclick="openTab('music')">🎵 Music</button>
+      <button onclick="openTab('reminders')">💭 Reminders</button>
+      <button onclick="openTab('photos')">📷 Photos</button>
+    </div>
+
+    <div id="letter" class="tab-content hidden"> <h2>For the Love of my Life ❤️</h2> <p>I know that some days feel unbearably heavy, that exhaustion weighs on you, that every stream, every video , every content you do feels like you achieve nothing and the world seems too much to handle. I know there are moments when you just want to retreat, to be alone with your thoughts and give up. But please, my love, let me stay by your side. Let me be your shelter, your warmth, your quiet place of comfort.I don't just want to be with you for now - I want to be with you until the end of time. Until my last breath, until the stars fade, until even death can no longer separate us. And if there is an afterlife, I will search for you across eternity, just to find you again. I love you with every piece of my heart, deeper than words can ever express.</p> <break> <p> If I could take even a fraction of your burdens, your pain, your worries, I would do it without hesitation - just so I could see you smile a little more, just so your heart could feel a little lighter.I will do whetever it goes by my hand to help you achieve the things that you love. </p> <p> Forever and always,</p><break> <p>Your Husband ❤️</p> </div>
+
+    <div id="music" class="tab-content hidden">
+      <h3>Songs that remind me of you:</h3>
+      <p>Skillet - Awake and Alive</p>
+      <audio controls>
+        <source src="Skillet_Awake_and_Alive.mp3" type="audio/mpeg">
+      </audio>
+
+      <br><br>
+
+      <p>The Calling - Wherever You Will Go</p>
+      <audio controls>
+        <source src="The_Calling_Wherever_You_Will_Go.mp3" type="audio/mpeg">
+      </audio>
+    </div>
+
+    <div id="reminders" class="tab-content hidden">
+      <h3>Check off our reminders:</h3>
+      <ul id="reminderList">
+        <li onclick="toggleComplete(this)">Eat chicken nuggets 🐣</li>
+        <li onclick="toggleComplete(this)">Send a shit ton of reels 😜</li>
+        <li onclick="toggleComplete(this)">Play a lot of games 🎮</li>
+        <li onclick="toggleComplete(this)">Give a lot of hugs and kisses 🤗</li>
+      </ul>
+    </div>
+
+    <div id="photos" class="tab-content hidden">
+      <h3>Memories together:</h3>
+      <div class="gallery">
+        <img src="Photos/photo1.jpg" alt="Memory 1">
+        <img src="Photos/photo2.jpg" alt="Memory 2">
+        <img src="Photos/photo3.jpg" alt="Memory 3">
+		<img src="Photos/photo4.jpg" alt="Memory 4">
+        <img src="Photos/photo5.jpg" alt="Memory 5">
+        <img src="Photos/photo6.jpg" alt="Memory 6">
+		<img src="Photos/photo7.jpg" alt="Memory 7">
+        <img src="Photos/photo8.jpg" alt="Memory 8">
+        <img src="Photos/photo9.jpg" alt="Memory 9">
+		<img src="Photos/photo10.jpg" alt="Memory 10">
+      </div>
+    </div>
+
+  </div>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
+
+<script>
+const SECRET = "2411";
+
+function checkCode() {
+  const input = document.getElementById("codeInput").value;
+  const form = document.getElementById("secret-form");
+  const welcome = document.getElementById("welcome-message");
+  const tabs = document.getElementById("tabs-section");
+  const message = document.getElementById("codeMessage");
+
+  if (input === SECRET) {
+    form.classList.add("hidden");
+    welcome.classList.remove("hidden");
+
+    setTimeout(() => {
+      welcome.classList.add("hidden");
+      tabs.classList.remove("hidden");
+    }, 3000);
+
+  } else {
+    message.textContent = "Sorry Booboo, try again!";
+  }
+}
+
+function openTab(tabId){
+  const tabs = ["letter","music","reminders","photos"];
+  tabs.forEach(id => document.getElementById(id).classList.add("hidden"));
+  document.getElementById(tabId).classList.remove("hidden");
+}
+
+function toggleComplete(li){
+  li.classList.toggle("completed");
+  checkAllCompleted();
+}
+
+function checkAllCompleted(){
+  const items = document.querySelectorAll('#reminderList li');
+  const allDone = Array.from(items).every(li => li.classList.contains('completed'));
+
+  if(allDone){
+    launchConfetti();
+    setTimeout(() => { openQRPopup(); }, 1200);
+  }
+}
+
+function launchConfetti(){
+  confetti({
+    particleCount: 180,
+    spread: 100,
+    origin: { y: 0.6 },
+    colors: ['#ff3366','#ff99cc','#ffffff']
+  });
+}
+
+function openQRPopup(){
+
+  // 👉 CHANGE THIS to your QR image filename
+  const qrImage = "qr-code.jpeg";
+
+  const popup = window.open("", "QRPopup", "width=320,height=380");
+
+  popup.document.write(`
+    <html>
+    <head>
+      <title>Scan Me ❤️</title>
+      <style>
+        body {
+          font-family: Arial, sans-serif;
+          text-align: center;
+          padding-top: 20px;
+          background: #ffe6f2;
+        }
+        h2 { color:#ff3366; }
+        img {
+          margin-top: 10px;
+          width: 250px;
+          height: 250px;
+          border-radius: 10px;
+        }
+      </style>
+    </head>
+    <body>
+      <h2>Scan this, my love 💖</h2>
+      <p>Use your phone camera</p>
+
+      <img src="${qrImage}" alt="QR Code">
+
+    </body>
+    </html>
+  `);
+}
+</script>
+
+</body>
+</html>
